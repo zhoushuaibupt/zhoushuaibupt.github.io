@@ -1,11 +1,40 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
-<h1>Hello World!</h1>
-<p>I'm hosted wiyh GitHub Pages</p>
-</body>
-</html>
+---
+layout: default
+title: 一只狗的自白
+---
+
+<div class="posts">
+  {% for post in paginator.posts %}
+  <div class="post">
+    <h4 class="post-title">
+      <a href="{{ post.url }}">{{ post.title }}</a>
+    </h4>
+    <span class="post-date"><small>{{ post.date | date_to_string }}</small></span>
+{{ post.content  ||split:'<!-- more -->' | first }}
+  </div>
+  {% endfor %}
+</div>
+
+<!--
+<div class="pagination">
+
+  {% if paginator.previous_page %}
+    {% if paginator.page == 2 %}
+      <a class="pagination-item newer" href="/"><small>PREV</small></a>
+    {% else %}
+      <a class="pagination-item newer" href="/page{{paginator.previous_page}}"><small>PREV</small></a>
+    {% endif %}
+  {% else %}
+    <small>PREV</small>
+    <span class="pagination-item newer"><small>PREV</small></span>
+  {% endif %}
+   {% if paginator.next_page %}
+    <a class="pagination-item older" href="/page{{paginator.next_page}}"><small>NEXT</small></a>
+  {% else %}
+    <small>NEXT</small>
+    <span class="pagination-item older"><small>NEXT</small></span>
+
+  {% endif %}
+</div>
+-->
+
